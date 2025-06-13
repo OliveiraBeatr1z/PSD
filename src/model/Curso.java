@@ -1,22 +1,28 @@
 package model;
 
 public class Curso {
-	private String codCurso;
+
+	private int codigoCurso;
 	private String nomeCurso;
-	private String areaConhecimentoCurso;
+	private String areaConhecimento;
 	
-	@Override
-	public String toString() {
-		return "Curso [codCurso=" + codCurso + ", nomeCurso=" + nomeCurso + ", areaConhecimentoCurso="
-				+ areaConhecimentoCurso + "]";
+	public Curso() {
+		
 	}
 
-	public String getCodCurso() {
-		return codCurso;
+	public Curso(int codigoCurso, String nomeCurso, String areaConhecimento) {
+		super();
+		this.codigoCurso = codigoCurso;
+		this.nomeCurso = nomeCurso;
+		this.areaConhecimento = areaConhecimento;
 	}
 
-	public void setCodCurso(String codCurso) {
-		this.codCurso = codCurso;
+	public int getCodigoCurso() {
+		return codigoCurso;
+	}
+
+	public void setCodigoCurso(int codigoCurso) {
+		this.codigoCurso = codigoCurso;
 	}
 
 	public String getNomeCurso() {
@@ -27,12 +33,18 @@ public class Curso {
 		this.nomeCurso = nomeCurso;
 	}
 
-	public String getAreaConhecimentoCurso() {
-		return areaConhecimentoCurso;
+	public String getAreaConhecimento() {
+		return areaConhecimento;
 	}
 
-	public void setAreaConhecimentoCurso(String areaConhecimentoCurso) {
-		this.areaConhecimentoCurso = areaConhecimentoCurso;
+	public void setAreaConhecimento(String areaConhecimento) {
+		this.areaConhecimento = areaConhecimento;
+	}
+
+	@Override
+	public String toString() {
+		return codigoCurso + ";" + nomeCurso + ";"
+				+ areaConhecimento;
 	}
 	
 	

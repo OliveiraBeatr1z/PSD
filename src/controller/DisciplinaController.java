@@ -4,11 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.swing.JTextArea;
@@ -119,54 +117,65 @@ public class DisciplinaController implements ActionListener{
     
     // CONSULTA usando FILA: todas as disciplinas são inseridas na fila
     private void consultaDisciplina() throws Exception {
-    	
-    	Disciplina disciplina = new Disciplina();
-    	disciplina.setCodigoDisciplina(Integer.parseInt(tfDisciplinaCodigo.getText()));
-    	
-    	String path = System.getProperty("user.home") + File.separator + "SistemaCadastroFaculdade";
-		File arquivo = new File(path,"disciplinas.csv");
-		
-		if(arquivo.exists() && arquivo.isFile()) {
-			FileInputStream fis = new FileInputStream(arquivo);
-			InputStreamReader isr = new InputStreamReader(fis);
-			BufferedReader buffer = new BufferedReader(isr);
-			
-			String linha = buffer.readLine();
-			
-			while(linha != null){
-				String[] vetLinha = linha.split(";");
-				if (Integer.parseInt(vetLinha[0]) == disciplina.getCodigoDisciplina()) {
-					disciplina.setNomeDisciplina(vetLinha[1]); 
-					disciplina.setDiaSemana(vetLinha[2]);
-					disciplina.setHorarioAula(vetLinha[3]);
-					disciplina.setHorasDiarias(Integer.parseInt(vetLinha[4]));
-					disciplina.setCodigoCurso(Integer.parseInt(vetLinha[5]));
-					break;
-				}
-				linha = buffer.readLine();
-			}
-			buffer.close();
-			isr.close();
-			fis.close();
-			
-		}
-		
-		if(disciplina.getNomeDisciplina() != null) {
-			taDisciplina.setText("nome: "+disciplina.getNomeDisciplina()+
-					" dia da semana: "+disciplina.getDiaSemana());
-		}else {
-			taDisciplina.setText("Disciplina não encontrada");
-		}
-		
-		//para apagar os campos:
-    	tfDisciplinaCodigo.setText("");
-    	tfDisciplinaNome.setText("");
-    	tfDisciplinaDiaDaSemana.setText("");
-    	tfDisciplinaHorarioDaAula.setText("");
-    	tfDisciplinaHorasDiarias.setText("");
-    	tfDisciplinaCodigoCurso.setText("");
-		
+        int codigoBusca = Integer.parseInt(tfDisciplinaCodigo.getText());
+
+        // Criando fila de disciplinas
+        Fila fila = new Fila();
+
+        // Caminho do arquivo CSV
+        String path = System.getProperty("user.home") + File.separator + "SistemaCadastroFaculdade";
+        File arquivo = new File(path, "disciplinas.csv");
+
+        if (arquivo.exists() && arquivo.isFile()) {
+            BufferedReader buffer = new BufferedReader(new FileReader(arquivo));
+            String linha;
+
+            // Popula a fila com todas as disciplinas do arquivo
+            while ((linha = buffer.readLine()) != null) {
+                if (!linha.trim().isEmpty()) {
+                    String[] dados = linha.split(";");
+
+                    Disciplina d = new Disciplina();
+                    d.setCodigoDisciplina(Integer.parseInt(dados[0]));
+                    d.setNomeDisciplina(dados[1]);
+                    d.setDiaSemana(dados[2]);
+                    d.setHorarioAula(dados[3]);
+                    d.setHorasDiarias(Integer.parseInt(dados[4]));
+                    d.setCodigoCurso(Integer.parseInt(dados[5]));
+
+                    fila.insert(d);
+                }
+            }
+            buffer.close();
+        }
+
+        // Consulta na fila
+        Disciplina encontrada = null;
+        while (!fila.isEmpty()) {
+            Disciplina atual = (Disciplina) fila.remove();
+            if (atual.getCodigoDisciplina() == codigoBusca) {
+                encontrada = atual;
+                break;
+            }
+        }
+
+        // Mostra resultado
+        if (encontrada != null) {
+            taDisciplina.setText("nome: " + encontrada.getNomeDisciplina() +
+                    " dia da semana: " + encontrada.getDiaSemana());
+        } else {
+            taDisciplina.setText("Disciplina não encontrada");
+        }
+
+        // Limpa os campos
+        tfDisciplinaCodigo.setText("");
+        tfDisciplinaNome.setText("");
+        tfDisciplinaDiaDaSemana.setText("");
+        tfDisciplinaHorarioDaAula.setText("");
+        tfDisciplinaHorasDiarias.setText("");
+        tfDisciplinaCodigoCurso.setText("");
     }
+
     
     // ATUALIZA posição da lista
     private void atualizaDisciplina() throws Exception {

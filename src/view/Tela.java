@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.CursoController;
 import controller.DisciplinaController;
 import controller.ProfessorController;
 
@@ -198,6 +199,7 @@ public class Tela extends JFrame {
 		tfAreaConhecimentoCurso.setColumns(10);
 		
 		JButton btnBuscarCurso = new JButton("Bucar");
+		btnBuscarCurso.setBackground(Color.GRAY);
 		btnBuscarCurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -221,6 +223,24 @@ public class Tela extends JFrame {
 		tfCodigoCurso.setBounds(177, 27, 145, 20);
 		TabCurso.add(tfCodigoCurso);
 		tfCodigoCurso.setColumns(10);
+		
+		JButton btnCadastrarCurso = new JButton("Cadastrar");
+		btnCadastrarCurso.setBackground(Color.GRAY);
+		btnCadastrarCurso.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCadastrarCurso.setBounds(409, 26, 89, 27);
+		TabCurso.add(btnCadastrarCurso);
+		
+		JButton btnAtualizarCurso = new JButton("Atualizar");
+		btnAtualizarCurso.setBackground(Color.GRAY);
+		btnAtualizarCurso.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAtualizarCurso.setBounds(520, 27, 89, 26);
+		TabCurso.add(btnAtualizarCurso);
+		
+		JButton btnRemoverCurso = new JButton("Remover");
+		btnRemoverCurso.setBackground(Color.RED);
+		btnRemoverCurso.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnRemoverCurso.setBounds(520, 73, 89, 23);
+		TabCurso.add(btnRemoverCurso);
 		
 		JPanel TabInscricao = new JPanel();
 		tabbedPane.addTab("Inscrição", null, TabInscricao, null);
@@ -354,6 +374,11 @@ public class Tela extends JFrame {
 		btnAtualizarDisciplina.addActionListener(dCont);
 		btnRemoverDisciplina.addActionListener(dCont);
 		
-		
+		//inicialização controllerCurso e ação dos respectivos botões da tela curso
+		CursoController cCont = new CursoController(tfCodigoCurso, tfNomeCurso, tfAreaConhecimentoCurso, taCursoLista);
+		btnCadastrarCurso.addActionListener(cCont);
+		btnBuscarCurso.addActionListener(cCont);
+		btnAtualizarCurso.addActionListener(cCont);
+		btnRemoverCurso.addActionListener(cCont);
 	}
 }
