@@ -1,22 +1,22 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.DisciplinaController;
 import controller.ProfessorController;
-
-import javax.swing.JTabbedPane;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
 
 public class Tela extends JFrame {
 
@@ -36,6 +36,8 @@ public class Tela extends JFrame {
 	private JTextField tfCodigoCurso;
 	private JTextField tfNomeProfessor;
 	private JTextField tfPontuacao;
+	private JTextField tfHorasDiariasDisciplina;
+	private JTextField tfCodigoCursoDisciplina;
 
 	/**
 	 * Launch the application.
@@ -76,56 +78,97 @@ public class Tela extends JFrame {
 		
 		JLabel lblCodDisciplina = new JLabel("Codigo da Disciplina");
 		lblCodDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCodDisciplina.setBounds(28, 39, 128, 17);
+		lblCodDisciplina.setBounds(28, 11, 128, 17);
 		TabDisciplina.add(lblCodDisciplina);
 		
 		JLabel lblNomeDisciplina = new JLabel("Disciplina");
 		lblNomeDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNomeDisciplina.setBounds(28, 79, 128, 17);
+		lblNomeDisciplina.setBounds(28, 49, 128, 17);
 		TabDisciplina.add(lblNomeDisciplina);
 		
 		JLabel lblDiaDisciplina = new JLabel("Dia da Semana");
 		lblDiaDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDiaDisciplina.setBounds(28, 116, 107, 17);
+		lblDiaDisciplina.setBounds(28, 84, 107, 17);
 		TabDisciplina.add(lblDiaDisciplina);
 		
 		JLabel lblHoraAulaDisciplina = new JLabel("Horário de aula");
 		lblHoraAulaDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHoraAulaDisciplina.setBounds(28, 155, 107, 23);
+		lblHoraAulaDisciplina.setBounds(28, 122, 107, 23);
 		TabDisciplina.add(lblHoraAulaDisciplina);
 		
 		tfCodDisciplina = new JTextField();
-		tfCodDisciplina.setBounds(166, 39, 220, 20);
+		tfCodDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfCodDisciplina.setBounds(166, 11, 220, 20);
 		TabDisciplina.add(tfCodDisciplina);
 		tfCodDisciplina.setColumns(10);
 		
 		tfNomeDisciplina = new JTextField();
-		tfNomeDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		tfNomeDisciplina.setBounds(166, 79, 220, 20);
+		tfNomeDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfNomeDisciplina.setBounds(166, 48, 220, 20);
 		TabDisciplina.add(tfNomeDisciplina);
 		tfNomeDisciplina.setColumns(10);
 		
 		tfDiaSemanaDisciplina = new JTextField();
 		tfDiaSemanaDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		tfDiaSemanaDisciplina.setBounds(166, 116, 220, 20);
+		tfDiaSemanaDisciplina.setBounds(166, 82, 220, 20);
 		TabDisciplina.add(tfDiaSemanaDisciplina);
 		tfDiaSemanaDisciplina.setColumns(10);
 		
 		tfHoraAulaDisciplina = new JTextField();
-		tfHoraAulaDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		tfHoraAulaDisciplina.setBounds(166, 158, 220, 20);
+		tfHoraAulaDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfHoraAulaDisciplina.setBounds(166, 124, 220, 20);
 		TabDisciplina.add(tfHoraAulaDisciplina);
 		tfHoraAulaDisciplina.setColumns(10);
 		
 		JButton btnBuscarDisciplina = new JButton("Buscar");
 		btnBuscarDisciplina.setBackground(new Color(128, 128, 128));
-		btnBuscarDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnBuscarDisciplina.setBounds(28, 199, 166, 36);
+		btnBuscarDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnBuscarDisciplina.setBounds(420, 11, 166, 36);
 		TabDisciplina.add(btnBuscarDisciplina);
 		
 		JTextArea taDisciplinasLista = new JTextArea();
 		taDisciplinasLista.setBounds(10, 246, 599, 156);
 		TabDisciplina.add(taDisciplinasLista);
+		
+		JLabel lblHorasDiariasDisciplina = new JLabel("Horas Diárias");
+		lblHorasDiariasDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHorasDiariasDisciplina.setBounds(28, 156, 107, 23);
+		TabDisciplina.add(lblHorasDiariasDisciplina);
+		
+		JLabel lblCodigoCursoDisciplina = new JLabel("Código do Curso");
+		lblCodigoCursoDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCodigoCursoDisciplina.setBounds(22, 190, 113, 23);
+		TabDisciplina.add(lblCodigoCursoDisciplina);
+		
+		tfHorasDiariasDisciplina = new JTextField();
+		tfHorasDiariasDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfHorasDiariasDisciplina.setBounds(166, 159, 220, 20);
+		TabDisciplina.add(tfHorasDiariasDisciplina);
+		tfHorasDiariasDisciplina.setColumns(10);
+		
+		tfCodigoCursoDisciplina = new JTextField();
+		tfCodigoCursoDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfCodigoCursoDisciplina.setBounds(166, 193, 220, 20);
+		TabDisciplina.add(tfCodigoCursoDisciplina);
+		tfCodigoCursoDisciplina.setColumns(10);
+		
+		JButton btnCadastrarDisciplina = new JButton("Cadastrar");
+		btnCadastrarDisciplina.setBackground(Color.GRAY);
+		btnCadastrarDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCadastrarDisciplina.setBounds(420, 61, 166, 36);
+		TabDisciplina.add(btnCadastrarDisciplina);
+		
+		JButton btnAtualizarDisciplina = new JButton("Atualizar");
+		btnAtualizarDisciplina.setBackground(Color.GRAY);
+		btnAtualizarDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAtualizarDisciplina.setBounds(420, 110, 166, 36);
+		TabDisciplina.add(btnAtualizarDisciplina);
+		
+		JButton btnRemoverDisciplina = new JButton("Remover");
+		btnRemoverDisciplina.setBackground(Color.RED);
+		btnRemoverDisciplina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRemoverDisciplina.setBounds(420, 171, 166, 36);
+		TabDisciplina.add(btnRemoverDisciplina);
 		
 		JPanel TabCurso = new JPanel();
 		TabCurso.setToolTipText("Cursos disponíveis");
@@ -302,6 +345,14 @@ public class Tela extends JFrame {
 		btnCadastrarProfessor.addActionListener(pCont);
 		btnBuscarProfessor.addActionListener(pCont);
 		
+		
+		
+		//inicialização controllerDisciplina e ação dos respectivos botões da tela disciplina
+		DisciplinaController dCont = new DisciplinaController(tfCodDisciplina, tfNomeDisciplina, tfDiaSemanaDisciplina, tfHoraAulaDisciplina, tfHorasDiariasDisciplina, tfCodigoCursoDisciplina, taDisciplinasLista);
+		btnCadastrarDisciplina.addActionListener(dCont);
+		btnBuscarDisciplina.addActionListener(dCont);
+		btnAtualizarDisciplina.addActionListener(dCont);
+		btnRemoverDisciplina.addActionListener(dCont);
 		
 		
 	}

@@ -1,24 +1,38 @@
 package model;
 
+
 public class Disciplina {
-	private String codDisciplina;
+
+	private int codigoDisciplina;
 	private String nomeDisciplina;
 	private String diaSemana;
-	private String horarioInicio;
-	private String horasDiarias;
+	private String horarioAula;
+	private int horasDiarias;
+
+	//agora imagino que seja a associação com a classse curso
+	private int codigoCurso;
 	
-	@Override
-	public String toString() {
-		return "Disciplina [codDisciplina=" + codDisciplina + ", nomeDisciplina=" + nomeDisciplina + ", diaSemana="
-				+ diaSemana + ", horarioInicio=" + horarioInicio + ", horasDiarias=" + horasDiarias + "]";
+	public Disciplina() {
+		
 	}
 
-	public String getCodDisciplina() {
-		return codDisciplina;
+	public Disciplina(int codigoDisciplina, String nomeDisciplina, String diaSemana, String horarioAula,
+			int horasDiarias, int codigoCurso) {
+		super();
+		this.codigoDisciplina = codigoDisciplina;
+		this.nomeDisciplina = nomeDisciplina;
+		this.diaSemana = diaSemana;
+		this.horarioAula = horarioAula;
+		this.horasDiarias = horasDiarias;
+		this.codigoCurso = codigoCurso;
 	}
 
-	public void setCodDisciplina(String codDisciplina) {
-		this.codDisciplina = codDisciplina;
+	public int getCodigoDisciplina() {
+		return codigoDisciplina;
+	}
+
+	public void setCodigoDisciplina(int codigoDisciplina) {
+		this.codigoDisciplina = codigoDisciplina;
 	}
 
 	public String getNomeDisciplina() {
@@ -37,22 +51,36 @@ public class Disciplina {
 		this.diaSemana = diaSemana;
 	}
 
-	public String getHorarioInicio() {
-		return horarioInicio;
+	public String getHorarioAula() {
+		return horarioAula;
 	}
 
-	public void setHorarioInicio(String horarioInicio) {
-		this.horarioInicio = horarioInicio;
+	public void setHorarioAula(String horarioAula) {
+		this.horarioAula = horarioAula;
 	}
 
-	public String getHorasDiarias() {
+	public int getHorasDiarias() {
 		return horasDiarias;
 	}
 
-	public void setHorasDiarias(String horasDiarias) {
+	public void setHorasDiarias(int horasDiarias) {
 		this.horasDiarias = horasDiarias;
 	}
 
+	public int getCodigoCurso() {
+		return codigoCurso;
+	}
+
+	public void setCodigoCurso(int codigoCurso) {
+		this.codigoCurso = codigoCurso;
+	}
+
+	@Override
+	public String toString() {
+		return codigoDisciplina + ";" + nomeDisciplina
+				+ ";" + diaSemana + ";" + horarioAula + ";" + horasDiarias
+				+ ";" + codigoCurso;
+	}
 	
 	
 }
