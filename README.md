@@ -17,7 +17,7 @@ Desenvolver um sistema para gerenciar o processo seletivo de docentes, conforme 
 - Uma **inscrição** representa a candidatura de um professor a uma disciplina;
 - O sistema deve realizar operações de **CRUD** (Criar, Ler, Atualizar e Deletar) para todas as entidades;
 - As entidades devem ser armazenadas em estruturas de dados não convencionais (listas encadeadas simples, filas, etc.);
-- A interface deve ser gráfica, construída com **Java Swing**.
+- A interface deve ser gráfica, construída com **JPanel**.
 
 ---
 
